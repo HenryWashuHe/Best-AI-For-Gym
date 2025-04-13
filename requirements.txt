@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+google-cloud-aiplatform # Add back Vertex AI
+# google-cloud-vision # Remove Cloud Vision
+google-auth
+python-dotenv
+Pillow
+opencv-python
+mediapipe

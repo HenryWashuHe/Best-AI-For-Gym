@@ -1,0 +1,450 @@
+:root {
+    --primary-color: #0056b3; /* Darker blue */
+    --secondary-color: #6c757d;
+    --light-bg: #f8f9fa;
+    --white: #fff;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.075);
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --warning-bg: #fff3cd;
+    --warning-border: #ffeeba;
+    --info-bg: #d1ecf1;
+    --info-border: #bee5eb;
+    --danger-bg: #f8d7da;
+    --danger-border: #f5c6cb;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nicer font stack */
+    line-height: 1.6;
+    margin: 0; /* Remove default margin */
+    background-color: var(--light-bg);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    padding: 20px;
+}
+
+.main-container { /* Add a wrapper for max-width and centering */
+    width: 100%;
+    max-width: 900px; /* Limit content width */
+    margin: 0 auto;
+}
+
+/* Removed Styles for Purpose Selection */
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 10px; /* Adjust spacing */
+}
+
+h2 {
+     text-align: center;
+     color: #444;
+     margin-top: 30px; /* Space above section titles */
+     margin-bottom: 20px;
+}
+
+p { /* Base paragraph style */
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 40px 0;
+}
+
+/* Base container style for sections */
+.section-container {
+    background: var(--white);
+    padding: 25px 30px; /* More padding */
+    border-radius: 10px; /* Slightly more rounded */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Softer shadow */
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease-in-out, opacity 0.5s ease-in-out; /* Add opacity transition */
+    opacity: 1; /* Start visible by default if not hidden by JS */
+}
+.section-container.hidden { /* Class to hide sections for transition */
+    opacity: 0;
+    max-height: 0; /* Helps with layout collapse */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    overflow: hidden; /* Prevent content spillover */
+    border: none; /* Hide border when hidden */
+    box-shadow: none;
+}
+
+.section-container:hover {
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply base container style to specific sections */
+.upload-container,
+.feedback-container,
+.plan-generator-container {
+    background: var(--white);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.upload-container:hover,
+.feedback-container:hover,
+.plan-generator-container:hover {
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+/* Keep text-align specific to upload-container if needed */
+.upload-container {
+    text-align: center;
+}
+
+
+/* Hide the default file input */
+#fileInput {
+    display: none;
+}
+
+/* Style the custom upload button */
+.upload-button {
+    display: inline-block;
+    padding: 12px 25px; /* Slightly larger */
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.upload-button:hover {
+    background-color: #004085; /* Darken on hover */
+    transform: translateY(-1px); /* Slight lift */
+}
+.upload-button:active {
+     transform: translateY(0px); /* Press down */
+}
+.upload-button:disabled { /* Style for disabled state */
+    background-color: #a0c7e4;
+    cursor: not-allowed;
+    transform: none; /* No hover effect when disabled */
+}
+
+/* Secondary button style */
+.button-secondary {
+    background-color: var(--secondary-color);
+}
+.button-secondary:hover {
+     background-color: #5a6268; /* Darken secondary color */
+     transform: translateY(-1px);
+}
+.button-secondary:active {
+     transform: translateY(0px);
+}
+
+
+#preview {
+    margin-top: 15px;
+    min-height: 100px; /* Ensure space for preview */
+    border: 2px dashed var(--border-color); /* Thicker dash */
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-bg); /* Lighter background */
+    border-radius: 8px; /* Rounded corners */
+    min-height: 150px; /* Increase min height */
+}
+
+#preview img,
+#preview video {
+    max-width: 100%;
+    max-height: 350px; /* Increase max height */
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px; /* Add slight rounding to previews */
+}
+
+#preview p {
+    color: var(--secondary-color); /* Use variable */
+    font-style: italic;
+}
+
+/* Remove redundant #feedback-section and #feedback-content styles */
+
+.feedback-part {
+    margin-bottom: 20px; /* More space between parts */
+    padding: 15px 20px; /* Adjust padding */
+    border-radius: 8px; /* More rounded */
+    border: 1px solid transparent; /* Base border */
+}
+
+.feedback-part h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+#feedback-good {
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+    border-left-width: 5px;
+}
+
+#feedback-fix {
+    background-color: var(--warning-bg);
+    border-color: var(--warning-border);
+     border-left-width: 5px;
+}
+
+#feedback-advice {
+    background-color: var(--info-bg);
+    border-color: var(--info-border);
+     border-left-width: 5px;
+}
+
+#feedback-raw {
+     background-color: #e9ecef;
+     border-color: #ced4da;
+     border-left-width: 5px;
+}
+
+#feedback-raw pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* Styles for Example Video */
+#example-video-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+#example-video-section h3 {
+     margin-top: 0;
+     margin-bottom: 10px;
+     color: #495057;
+}
+
+#example-video-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000; /* Black background while loading */
+}
+
+#example-video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Styles for Plan Generator */
+
+.plan-generator-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-grid label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-grid input[type="number"],
+.form-grid select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease; /* Add transition */
+}
+.form-grid input[type="number"]:focus,
+.form-grid select:focus {
+    border-color: var(--primary-color); /* Highlight on focus */
+    outline: none; /* Remove default outline */
+}
+
+
+#plan-form button { /* Inherits .upload-button styles */
+    display: block;
+    margin: 25px auto 0 auto; /* More margin top */
+}
+
+#plan-output-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color); /* Use variable */
+}
+
+#plan-output-section h3 {
+    text-align: center;
+    margin-bottom: 20px; /* More space */
+    color: #444;
+}
+
+.plan-part {
+    margin-bottom: 20px; /* More space */
+    padding: 20px; /* More padding */
+    border-radius: 8px; /* More rounded */
+    border: 1px solid var(--border-color);
+    background-color: var(--white); /* White background for plan parts */
+}
+
+.plan-part h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 1px solid var(--border-color); /* Use variable */
+    padding-bottom: 8px; /* Adjust padding */
+}
+
+/* Remove .plan-part pre style */
+
+/* Style lists generated from Markdown */
+.plan-part div ul,
+.plan-part div ol {
+    padding-left: 25px; /* More indent */
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.plan-part div li {
+    margin-bottom: 6px; /* More space */
+}
+
+.plan-part div strong {
+    font-weight: 600;
+    color: #333; /* Darker bold text */
+}
+
+.disclaimer {
+    font-size: 0.9em; /* Slightly larger */
+    color: #856404; /* Darker warning text */
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    padding: 12px 15px; /* Adjust padding */
+    border-radius: 5px;
+    margin-bottom: 20px; /* More space */
+    text-align: center;
+}
+.disclaimer strong {
+    color: inherit; /* Inherit color */
+}
+
+
+#plan-loading,
+#trainer-loading { /* Combined loading styles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    min-height: 100px;
+}
+
+/* Simple CSS Spinner */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--primary-color);
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* Styles for Trainer Recommendations */
+#trainer-recommendations-section {
+    margin-top: 30px; /* More space */
+    padding-top: 20px; /* More space */
+    border-top: 1px solid var(--border-color); /* Use variable */
+}
+
+#trainer-recommendations-section h3 {
+    text-align: center;
+    margin-bottom: 20px; /* More space */
+    color: #444;
+}
+
+#trainer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly wider cards */
+    gap: 20px; /* More gap */
+}
+
+.trainer-card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Match section rounding */
+    padding: 20px; /* More padding */
+    box-shadow: 0 2px 5px var(--shadow-color); /* Consistent shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.trainer-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.trainer-card h5 {
+    margin-top: 0;
+    margin-bottom: 8px; /* More space */
+    color: var(--primary-color); /* Use variable */
+    font-size: 1.15em;
+}
+
+.trainer-card p {
+    margin-bottom: 10px; /* More space */
+    font-size: 0.95em; /* Slightly larger */
+    color: #444; /* Darker text */
+}
+.trainer-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+.trainer-card .specialty {
+    font-size: 0.9em; /* Slightly larger */
+    color: var(--secondary-color); /* Use variable */
+    font-style: normal; /* Remove italic */
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-color);
+}
+
+/* Remove redundant #trainer-loading */

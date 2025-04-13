@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sports Coach</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Showdown library for Markdown rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+</head>
+<body>
+<div class="main-container"> <!-- Wrap everything in a container -->
+    <h1>AI Sports Coach</h1>
+
+    <!-- Form Check Section -->
+    <div id="form-check-section">
+        <h2>Check Your Form</h2>
+        <p>Upload a video or image of your workout move for AI feedback!</p>
+        <div class="upload-container">
+            <input type="file" id="fileInput" accept="image/*,video/*">
+            <label for="fileInput" class="upload-button">Choose File</label>
+            <div id="preview">
+                <p>No file selected</p>
+            </div>
+        </div>
+
+        <div id="feedback-section" class="feedback-container" style="display: none;">
+            <h2>Feedback:</h2>
+            <div id="feedback-content">
+                <!-- Structured feedback will go here -->
+                <div class="feedback-part" id="feedback-good">
+                    <h3>✅ Good Points:</h3>
+                    <p>...</p>
+                </div>
+                <div class="feedback-part" id="feedback-fix">
+                    <h3>⚠️ Areas to Fix:</h3>
+                    <p>...</p>
+                </div>
+                <div class="feedback-part" id="feedback-advice">
+                    <h3>💡 Coaching Advice:</h3>
+                    <p>...</p>
+                </div>
+                <div class="feedback-part" id="feedback-raw" style="display: none;">
+                     <h3>Raw Response:</h3>
+                     <pre>...</pre> <!-- For fallback if parsing fails -->
+                </div>
+                 <!-- New section for example video -->
+                <div id="example-video-section" style="display: none;">
+                    <h3>Example Video:</h3>
+                    <div id="example-video-embed">
+                        <!-- YouTube iframe will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Removed Back to Start button -->
+        </div>
+    </div> <!-- End of form-check-section -->
+
+    <hr> <!-- Separator -->
+
+    <!-- Plan Generation Section -->
+    <div id="plan-generation-section">
+         <div class="plan-generator-container">
+             <h2>Personalized Plan Generator</h2>
+             <p>Enter your details and fitness goals to get a sample nutrition and workout plan.</p>
+            <form id="plan-form">
+                <div class="form-grid">
+                    <div>
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" required min="1">
+                    </div>
+                    <div>
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select...</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other/Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="weight">Weight (kg):</label>
+                        <input type="number" id="weight" name="weight" required step="0.1" min="1">
+                    </div>
+                    <div>
+                        <label for="height">Height (cm):</label>
+                        <input type="number" id="height" name="height" required min="1">
+                    </div>
+                    <div>
+                        <label for="activity">Activity Level:</label>
+                        <select id="activity" name="activity" required>
+                            <option value="">Select...</option>
+                            <option value="sedentary">Sedentary (little/no exercise)</option>
+                            <option value="light">Lightly active (light exercise/sports 1-3 days/week)</option>
+                            <option value="moderate">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                            <option value="active">Very active (hard exercise/sports 6-7 days a week)</option>
+                            <option value="extra">Extra active (very hard exercise/sports & physical job)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="goal">Fitness Goal:</label>
+                        <select id="goal" name="goal" required>
+                            <option value="">Select...</option>
+                            <option value="weight_loss">Weight Loss</option>
+                            <option value="muscle_gain">Muscle Gain</option>
+                            <option value="maintenance">Maintenance / General Fitness</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" id="generatePlanBtn" class="upload-button">Generate Plan</button>
+            </form>
+
+            <div id="plan-output-section" style="display: none;">
+                 <h3>Generated Plan:</h3>
+                 <p class="disclaimer"><strong>Disclaimer:</strong> This plan is AI-generated based on the provided data. It is not a substitute for professional medical or fitness advice. Consult with a qualified professional before starting any new diet or exercise program.</p>
+                 <div id="plan-loading" style="display: none;">Generating plan... please wait.</div>
+                 <div class="plan-part" id="nutrition-plan">
+                     <h4>Nutrition Suggestions:</h4>
+                     <div>...</div> <!-- Changed pre to div -->
+                 </div>
+                 <div class="plan-part" id="workout-plan">
+                     <h4>Workout Suggestions:</h4>
+                     <div>...</div> <!-- Changed pre to div -->
+                 </div>
+                 <!-- Add Trainer Recommendation Button -->
+                 <button type="button" id="findTrainersBtn" class="upload-button button-secondary" style="display: none; margin-top: 15px;">Find Matching Trainers</button>
+            </div>
+
+             <!-- New Section for Trainer Recommendations -->
+            <div id="trainer-recommendations-section" style="display: none;">
+                <h3>Recommended Trainers:</h3>
+                <div id="trainer-loading" style="display: none;">Finding trainers...</div>
+                <div id="trainer-list">
+                    <!-- Trainer cards will be inserted here -->
+                </div>
+            </div>
+         </div>
+    </div> <!-- End of plan-generation-section -->
+
+</div> <!-- End of main-container -->
+<script src="app.js"></script>
+</body>
+</html>
